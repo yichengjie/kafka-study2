@@ -1,11 +1,11 @@
 package com.yicj.study.stream.controller;
 
+import com.yicj.study.stream.service.SendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.function.Supplier;
 
 /**
  * @author yicj
@@ -16,12 +16,11 @@ import java.util.function.Supplier;
 public class HelloController {
 
     @Autowired
-    private Supplier<String> pkSlowSourceX ;
+    private SendService sendService ;
 
     @GetMapping("/send")
     public String send(){
-        String retValue = pkSlowSourceX.get();
-
-        return retValue ;
+        sendService.sendMsg2Sup("hello world");
+        return "success" ;
     }
 }

@@ -3,7 +3,7 @@ spring:
     stream:
       function:
         # 这里的名称与AppConfig中bean的名称要保持一致
-        definition: pkSlowSourceX; pkSlowSinkX
+        definition: pkSlowSinkX
       bindings:
         # 中划线以及后面内容是固定的
         pkSlowSourceX-out-0:
@@ -31,3 +31,5 @@ spring:
           auto-create-topics: true
           required-acks: 1
           replication-factor: 1
+      # 手动发送消息
+#      output-bindings: pkSlowSourceX-out-0
