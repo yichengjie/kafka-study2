@@ -11,9 +11,9 @@ public class HelloMessageProducer {
     private String topicName ;
     
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate ;
+    private KafkaTemplate<String, String> hdkKafkaTemplate ;
 
     public void send(String key, String jsonContent){
-        kafkaTemplate.send(topicName, key, jsonContent) ;
+        hdkKafkaTemplate.send(topicName, key, jsonContent) ;
     }
 }
