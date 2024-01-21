@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>hello-stream-kafka</module>
+        <module>hdk-kafka-showcase</module>
     </modules>
 
     <groupId>com.yicj.study</groupId>
