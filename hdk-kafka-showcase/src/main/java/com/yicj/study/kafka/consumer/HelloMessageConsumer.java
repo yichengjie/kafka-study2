@@ -12,7 +12,7 @@ public class HelloMessageConsumer {
     @KafkaListener(
             id = "helloMessageConsumer",
             groupId = "groupId",
-            containerFactory = "kafkaListenerContainerFactory222",
+            containerFactory = "containerFactory222",
             topics = "hello-topic"
     )
     public void listener(ConsumerRecord<String, Object> record) {
