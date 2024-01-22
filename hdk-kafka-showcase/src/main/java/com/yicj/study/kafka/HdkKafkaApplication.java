@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author yicj
  * @Since 2024/1/21 9:59
  */
-@SpringBootApplication
+@SpringBootApplication//(exclude = KafkaAutoConfiguration.class)
 public class HdkKafkaApplication {
 
     public static void main(String[] args) {
