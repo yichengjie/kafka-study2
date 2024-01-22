@@ -1,5 +1,6 @@
 package com.yicj.study.kafka.config;
 
+import com.yicj.study.kafka.properties.KafkaProducerProperties;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
@@ -21,7 +22,7 @@ public class KafkaProducerRegistry implements BeanDefinitionRegistryPostProcesso
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         String bootstrapServer = "192.168.99.51:8989" ;
-        Map<String, Object> properties = new KafkaProperties().init(bootstrapServer);
+        Map<String, Object> properties = new KafkaProducerProperties().init(bootstrapServer);
         AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(DefaultKafkaProducerFactory.class)
                 .addConstructorArgValue(properties)
                 .getBeanDefinition();

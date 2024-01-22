@@ -1,6 +1,6 @@
 package com.yicj.study.kafka.producer;
 
-import com.yicj.study.kafka.config.KafkaProperties;
+import com.yicj.study.kafka.properties.KafkaProducerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -23,7 +23,7 @@ public class HelloMessageProducer2Test {
         String topicName = "hello-topic" ;
         //
         String bootstrapServer = "192.168.99.51:8989" ;
-        Map<String, Object> properties = new KafkaProperties().init(bootstrapServer);
+        Map<String, Object> properties = new KafkaProducerProperties().init(bootstrapServer);
         DefaultKafkaProducerFactory<Object, Object> producerFactory = new DefaultKafkaProducerFactory<>(properties);
         //
         KafkaTemplate<Object, Object> kafkaTemplate = new KafkaTemplate<>(producerFactory);

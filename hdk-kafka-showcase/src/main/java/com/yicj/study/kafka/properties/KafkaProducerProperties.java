@@ -1,4 +1,4 @@
-package com.yicj.study.kafka.config;
+package com.yicj.study.kafka.properties;
 
 import com.yicj.study.kafka.utils.KafkaUtils;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -10,7 +10,7 @@ import java.util.Map;
  * @author yicj
  * @Since 2024/1/21 16:07
  */
-public class KafkaProperties {
+public class KafkaProducerProperties {
 
     public Map<String, Object> init(String bootstrapServers){
         Map<String, Object> properties = new HashMap<>();
