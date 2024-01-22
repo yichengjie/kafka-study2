@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Import;
 public class HdkKafkaApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(HdkKafkaApplication.class, args) ;
     }
 }

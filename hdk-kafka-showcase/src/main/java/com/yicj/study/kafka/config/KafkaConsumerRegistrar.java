@@ -21,12 +21,12 @@ public class KafkaConsumerRegistrar implements ImportBeanDefinitionRegistrar {
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        this.doRegister(registry, "");
-        this.doRegister(registry, "222");
+        this.doRegister(registry, "", true);
+        this.doRegister(registry, "222", false);
     }
 
 
-    private void doRegister(BeanDefinitionRegistry registry, String suffix){
+    private void doRegister(BeanDefinitionRegistry registry, String suffix, boolean flag){
         String bootstrapServer = "192.168.99.51:8989" ;
         Map<String, Object> props = new KafkaConsumerProperties().init(bootstrapServer);
         String consumerFactoryName = "consumerFactory" + suffix ;
@@ -40,6 +40,7 @@ public class KafkaConsumerRegistrar implements ImportBeanDefinitionRegistrar {
         String containerFactoryName = "containerFactory" + suffix ;
         AbstractBeanDefinition containerFactory =
                 BeanDefinitionBuilder.genericBeanDefinition(ConcurrentKafkaListenerContainerFactory.class)
+                .setPrimary(flag)
                 .addPropertyReference("consumerFactory", consumerFactoryName)
                 .getBeanDefinition();
         //containerFactory.addQualifier(new AutowireCandidateQualifier());
