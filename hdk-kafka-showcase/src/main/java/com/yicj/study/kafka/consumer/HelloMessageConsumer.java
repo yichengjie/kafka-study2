@@ -18,7 +18,27 @@ public class HelloMessageConsumer {
     public void listener(ConsumerRecord<String, Object> record) {
         String content = (String) record.value();
         try {
-            log.info("kafka message : {}", content) ;
+            log.info("containerFactory222 kafka message : {}", content) ;
+            // todo 业务方法处理
+        } catch (Exception e) {
+            log.error("消息异常信息: ", e);
+        } finally {
+            //ack.acknowledge();
+        }
+    }
+
+
+
+    @KafkaListener(
+            id = "helloMessageConsumer2",
+            groupId = "groupId-1",
+            containerFactory = "containerFactory",
+            topics = "hello-topic"
+    )
+    public void listener2(ConsumerRecord<String, Object> record) {
+        String content = (String) record.value();
+        try {
+            log.info("helloMessageConsumer2 kafka message : {}", content) ;
             // todo 业务方法处理
         } catch (Exception e) {
             log.error("消息异常信息: ", e);

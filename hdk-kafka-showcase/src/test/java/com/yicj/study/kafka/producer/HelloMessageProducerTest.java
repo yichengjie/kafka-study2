@@ -18,7 +18,7 @@ public class HelloMessageProducerTest {
     @Test
     public void send(){
         String key = "1" ;
-        String message = "hello world" ;
+        String message = "hello world 1222222222222222222222" ;
         producer.send(key, message);
     }
 

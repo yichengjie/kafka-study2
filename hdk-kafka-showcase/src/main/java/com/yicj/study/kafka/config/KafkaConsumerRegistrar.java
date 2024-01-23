@@ -25,25 +25,22 @@ public class KafkaConsumerRegistrar implements ImportBeanDefinitionRegistrar {
         this.doRegister(registry, "222", false);
     }
 
-
     private void doRegister(BeanDefinitionRegistry registry, String suffix, boolean flag){
         String bootstrapServer = "192.168.99.51:8989" ;
         Map<String, Object> props = new KafkaConsumerProperties().init(bootstrapServer);
         String consumerFactoryName = "consumerFactory" + suffix ;
         AbstractBeanDefinition kafkaConsumerFactory =
                 BeanDefinitionBuilder.genericBeanDefinition(DefaultKafkaConsumerFactory.class)
+                .setPrimary(flag)
                 .addConstructorArgValue(props)
                 .getBeanDefinition();
         registry.registerBeanDefinition(consumerFactoryName, kafkaConsumerFactory);
-        //kafkaListenerContainerFactory //ConcurrentKafkaListenerContainerFactory
-        //String containerFactoryName = "kafkaListenerContainerFactory" + suffix ;
+        //
         String containerFactoryName = "containerFactory" + suffix ;
         AbstractBeanDefinition containerFactory =
                 BeanDefinitionBuilder.genericBeanDefinition(ConcurrentKafkaListenerContainerFactory.class)
-                .setPrimary(flag)
                 .addPropertyReference("consumerFactory", consumerFactoryName)
                 .getBeanDefinition();
-        //containerFactory.addQualifier(new AutowireCandidateQualifier());
         registry.registerBeanDefinition(containerFactoryName, containerFactory);
     }
 }
