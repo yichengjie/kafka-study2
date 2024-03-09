@@ -15,15 +15,6 @@ import java.util.function.Supplier;
 @Configuration
 public class AppConfig {
 
-//    @Bean
-//    public Supplier<String> pkSlowSourceX() {
-//        return () -> {
-//            String message = "www.pkslow.com";
-//            log.info("Sending value: " + message);
-//            return message;
-//        };
-//    }
-
     @Bean
     public Consumer<String> pkSlowSinkX() {
         return message -> {

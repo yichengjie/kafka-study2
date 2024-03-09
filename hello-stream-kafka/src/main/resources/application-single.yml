@@ -1,9 +1,9 @@
 spring:
   cloud:
+    function:
+      # 这里的名称与AppConfig中bean的名称要保持一致
+      definition: pkSlowSinkX
     stream:
-      function:
-        # 这里的名称与AppConfig中bean的名称要保持一致
-        definition: pkSlowSinkX
       bindings:
         # 中划线以及后面内容是固定的
         pkSlowSourceX-out-0:
@@ -27,7 +27,8 @@ spring:
         fixed-delay: 5000  # 固定时间发送一条消息
       kafka:
         binder:
-          brokers: 192.168.99.51:9092
+          #brokers: 192.168.99.51:9092
+          brokers: 127.0.0.1:9092
           auto-create-topics: true
           required-acks: 1
           replication-factor: 1
