@@ -1,4 +1,4 @@
---- # common config
+--- # brokers config
 spring:
   cloud:
     stream:
@@ -7,8 +7,24 @@ spring:
           type: kafka
           environment:
             spring:
-              kafka:
-                bootstrap-servers: 192.168.99.51:8989
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: 192.168.99.51:8989
+# spring cloud 2021.0.4 版本配置
+#spring:
+#  cloud:
+#    stream:
+#      binders:
+#        myKafka1:
+#          type: kafka
+#          environment:
+#             spring.kafka.bootstrap-servers: 192.168.99.51:8989
+--- # ssl config
+spring:
+  cloud:
+    stream:
       kafka:
         binder:
           configuration:
@@ -19,6 +35,7 @@ spring:
 --- # function config
 spring:
   cloud:
+    # 注意 function 节点与stream 同级，而非子节点
     function:
       definition: helloFunc;
 --- # binding config
@@ -27,6 +44,12 @@ spring:
     stream:
       bindings:
         helloFunc-in-0:
+          destination: hello-topic
+          group: hello-local-test-10
+          binder: myKafka1
+          consumer:
+            batch-mode: true
+        helloFunc-out-0:
           destination: hello-topic
           group: hello-local-test-10
           binder: myKafka1
