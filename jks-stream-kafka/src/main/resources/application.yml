@@ -1,0 +1,27 @@
+--- # common config
+spring:
+  cloud:
+    stream:
+      binders:
+        myKafka1:
+          type: kafka
+          environment:
+            spring:
+              kafka:
+                bootstrap-servers: 192.168.99.51:9092
+--- # function config
+spring:
+  cloud:
+    function:
+      definition: helloFunc;
+--- # binding config
+spring:
+  cloud:
+    stream:
+      bindings:
+        helloFunc-in-0:
+          destination: hello-topic
+          group: hello-local-test-10
+          binder: myKafka1
+          consumer:
+            batch-mode: true

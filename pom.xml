@@ -7,6 +7,8 @@
     <modules>
         <module>hello-stream-kafka</module>
         <module>hdk-kafka-showcase</module>
+        <module>plain-stream-kafka</module>
+        <module>jks-stream-kafka</module>
     </modules>
 
     <groupId>com.yicj.study</groupId>
