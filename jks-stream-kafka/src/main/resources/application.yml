@@ -8,7 +8,14 @@ spring:
           environment:
             spring:
               kafka:
-                bootstrap-servers: 192.168.99.51:9092
+                bootstrap-servers: 192.168.99.51:8989
+      kafka:
+        binder:
+          configuration:
+            security.protocol: SSL
+            ssl.endpoint.identification.algorithm: ""
+            ssl.truststore.location: "classpath:client.truststore.jks"
+            ssl.truststore.password: "hello123"
 --- # function config
 spring:
   cloud:
